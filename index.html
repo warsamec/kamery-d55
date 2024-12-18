@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamery dálnice D55</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 2em;
+            color: #0073e6;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .grid-item {
+            text-align: center;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .caption {
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kamery dálnice D55</h1>
+    <div class="grid">
+        <div class="grid-item">
+            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4297&rnd=KpsVsJt4" alt="Kamera 4297">
+            <div class="caption">43,2 km směr Břeclav</div>
+        </div>
+        <div class="grid-item">
+            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4298&rnd=Sm35JvIN" alt="Kamera 4298">
+            <div class="caption">47,1 km směr Olomouc</div>
+        </div>
+        <div class="grid-item">
+            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4299&rnd=Sgqyyp13" alt="Kamera 4299">
+            <div class="caption">49,8 km směr Břeclav</div>
+        </div>
+        <div class="grid-item">
+            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4300&rnd=pKDUZPy2" alt="Kamera 4300">
+            <div class="caption">51 km směr Olomouc</div>
+        </div>
+        <div class="grid-item">
+            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4301&rnd=sbPSedIk" alt="Kamera 4301">
+            <div class="caption">55,1 km směr Olomouc</div>
+        </div>
+        <div class="grid-item">
+            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4302&rnd=IWB1TS65" alt="Kamera 4302">
+            <div class="caption">58,9 směr Břeclav</div>
+        </div>
+    </div>
+</body>
+</html>
