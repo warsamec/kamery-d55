@@ -20,7 +20,6 @@
         }
         .grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
             gap: 10px;
             width: 100%;
             padding: 10px;
@@ -40,6 +39,20 @@
             margin-top: 5px;
             font-size: 0.9em;
             color: #555;
+        }
+
+        /* Výchozí nastavení pro větší zařízení (např. desktop) */
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Nastavení pro menší zařízení (např. mobily) */
+        @media (max-width: 767px) {
+            .grid {
+                grid-template-columns: 1fr; /* Jedna fotka na řádek */
+            }
         }
     </style>
 </head>
@@ -68,7 +81,7 @@
         </div>
         <div class="grid-item">
             <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4302&rnd=IWB1TS65" alt="Kamera 4302">
-            <div class="caption">58,9 směr Břeclav</div>
+            <div class="caption">58,9 km směr Břeclav</div>
         </div>
     </div>
 </body>
