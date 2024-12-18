@@ -69,7 +69,29 @@
         .overlay.active {
             display: flex;
         }
+
+        /* Mobilní zařízení */
+        @media (max-width: 767px) {
+            .grid {
+                grid-template-columns: 1fr; /* Jedna fotka na řádek */
+            }
+        }
     </style>
+    <script>
+        // Zobrazí překryvné okno s kliknutým obrázkem
+        function showOverlay(image) {
+            const overlay = document.querySelector('.overlay');
+            const overlayImage = overlay.querySelector('img');
+            overlayImage.src = image.src;
+            overlay.classList.add('active');
+        }
+
+        // Skryje překryvné okno
+        function hideOverlay() {
+            const overlay = document.querySelector('.overlay');
+            overlay.classList.remove('active');
+        }
+    </script>
 </head>
 <body>
     <h1>Kamery dálnice D55</h1>
@@ -104,21 +126,5 @@
     <div class="overlay" onclick="hideOverlay()">
         <img src="" alt="Zvětšená kamera">
     </div>
-
-    <script>
-        // Zobrazí překryvné okno s kliknutým obrázkem
-        function showOverlay(image) {
-            const overlay = document.querySelector('.overlay');
-            const overlayImage = overlay.querySelector('img');
-            overlayImage.src = image.src;
-            overlay.classList.add('active');
-        }
-
-        // Skryje překryvné okno
-        function hideOverlay() {
-            const overlay = document.querySelector('.overlay');
-            overlay.classList.remove('active');
-        }
-    </script>
 </body>
 </html>
