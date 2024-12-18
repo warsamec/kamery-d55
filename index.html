@@ -2,7 +2,7 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Kamery dálnice D55</title>
     <style>
         body {
@@ -40,6 +40,13 @@
             margin-top: 5px;
             font-size: 0.9em;
             color: #555;
+        }
+
+        /* Mobilní zařízení */
+        @media (max-width: 767px) {
+            .grid {
+                grid-template-columns: 1fr; /* Jedna fotka na řádek */
+            }
         }
     </style>
 </head>
