@@ -35,6 +35,11 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        img:hover {
+            transform: scale(1.05);
         }
         .caption {
             margin-top: 5px;
@@ -42,47 +47,78 @@
             color: #555;
         }
 
-        /* Mobilní zařízení */
-        @media (max-width: 767px) {
-            .grid {
-                grid-template-columns: 1fr; /* Jedna fotka na řádek */
-            }
+        /* Styl překryvného zobrazení */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 5px solid #fff;
+            border-radius: 10px;
+        }
+        .overlay.active {
+            display: flex;
         }
     </style>
-    <script>
-        // Automatická aktualizace stránky každých 5 minut (300000 ms)
-        setInterval(function() {
-            location.reload();
-        }, 300000); // 300000 ms = 5 minut
-    </script>
 </head>
 <body>
     <h1>Kamery dálnice D55</h1>
     <div class="grid">
         <div class="grid-item">
-            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4297&rnd=KpsVsJt4" alt="Kamera 4297">
+            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4297&rnd=KpsVsJt4" alt="Kamera 4297" onclick="showOverlay(this)">
             <div class="caption">43,2 km směr Břeclav</div>
         </div>
         <div class="grid-item">
-            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4298&rnd=Sm35JvIN" alt="Kamera 4298">
+            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4298&rnd=Sm35JvIN" alt="Kamera 4298" onclick="showOverlay(this)">
             <div class="caption">47,1 km směr Olomouc</div>
         </div>
         <div class="grid-item">
-            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4299&rnd=Sgqyyp13" alt="Kamera 4299">
+            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4299&rnd=Sgqyyp13" alt="Kamera 4299" onclick="showOverlay(this)">
             <div class="caption">49,8 km směr Břeclav</div>
         </div>
         <div class="grid-item">
-            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4300&rnd=pKDUZPy2" alt="Kamera 4300">
+            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4300&rnd=pKDUZPy2" alt="Kamera 4300" onclick="showOverlay(this)">
             <div class="caption">51 km směr Olomouc</div>
         </div>
         <div class="grid-item">
-            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4301&rnd=sbPSedIk" alt="Kamera 4301">
+            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4301&rnd=sbPSedIk" alt="Kamera 4301" onclick="showOverlay(this)">
             <div class="caption">55,1 km směr Olomouc</div>
         </div>
         <div class="grid-item">
-            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4302&rnd=IWB1TS65" alt="Kamera 4302">
+            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4302&rnd=IWB1TS65" alt="Kamera 4302" onclick="showOverlay(this)">
             <div class="caption">58,9 km směr Břeclav</div>
         </div>
     </div>
+
+    <!-- Překryvné zobrazení -->
+    <div class="overlay" onclick="hideOverlay()">
+        <img src="" alt="Zvětšená kamera">
+    </div>
+
+    <script>
+        // Zobrazí překryvné okno s kliknutým obrázkem
+        function showOverlay(image) {
+            const overlay = document.querySelector('.overlay');
+            const overlayImage = overlay.querySelector('img');
+            overlayImage.src = image.src;
+            overlay.classList.add('active');
+        }
+
+        // Skryje překryvné okno
+        function hideOverlay() {
+            const overlay = document.querySelector('.overlay');
+            overlay.classList.remove('active');
+        }
+    </script>
 </body>
 </html>
