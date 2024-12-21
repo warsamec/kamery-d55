@@ -3,51 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Kamery dálnice D55</title>
+    <title>Dálnice D55: Úsek Babice – Bzenec</title>
     <style>
+        :root {
+            --primary-color: #005baa; /* Modrá barva ŘSD */
+            --secondary-color: #f4f4f4; /* Světlé pozadí */
+            --text-color: #333; /* Barva textu */
+            --footer-bg-color: #003a72; /* Tmavší modrá pro zápatí */
+            --footer-text-color: #fff;
+
+            /* Tmavý režim */
+            --dark-primary-color: #93c2e9;
+            --dark-background-color: #121212;
+            --dark-text-color: #f0f0f0;
+            --dark-footer-bg-color: #002a50;
+            --dark-footer-text-color: #93c2e9;
+        }
+
+        /* Tmavý režim */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-color: var(--dark-primary-color);
+                --secondary-color: var(--dark-background-color);
+                --text-color: var(--dark-text-color);
+                --footer-bg-color: var(--dark-footer-bg-color);
+                --footer-text-color: var(--dark-footer-text-color);
+            }
+        }
+
         body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
         }
-        h1 {
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        header img {
+            height: 50px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .description {
+            padding: 20px;
+            background-color: var(--secondary-color);
             text-align: center;
-            margin: 20px 0;
-            font-size: 2em;
-            color: #0073e6;
+            font-size: 1.2em;
+            line-height: 1.6;
         }
+
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(800px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
             gap: 10px;
-            width: 100%;
             padding: 10px;
             box-sizing: border-box;
         }
-        .grid-item {
-            text-align: center;
-        }
-        img {
+
+        .grid-item img {
             width: 100%;
             height: auto;
-            border: 1px solid #ccc;
+            border: 1px solid var(--primary-color);
             border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
             transition: transform 0.3s ease;
-        }
-        img:hover {
-            transform: scale(1.05);
-        }
-        .caption {
-            margin-top: 5px;
-            font-size: 0.9em;
-            color: #555;
+            cursor: pointer;
         }
 
-        /* Styl překryvného zobrazení */
+        .grid-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .caption {
+            text-align: center;
+            margin-top: 5px;
+            font-size: 0.9em;
+        }
+
         .overlay {
             display: none;
             position: fixed;
@@ -60,21 +104,55 @@
             align-items: center;
             z-index: 1000;
         }
+
         .overlay img {
             max-width: 90%;
             max-height: 90%;
-            border: 5px solid #fff;
+            border: 5px solid white;
             border-radius: 10px;
         }
+
         .overlay.active {
             display: flex;
         }
 
-        /* Mobilní zařízení */
-        @media (max-width: 767px) {
-            .grid {
-                grid-template-columns: 1fr; /* Jedna fotka na řádek */
-            }
+        .timeline {
+            margin: 20px;
+            padding: 20px;
+            background-color: var(--secondary-color);
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .timeline h2 {
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .timeline-event {
+            margin-bottom: 20px;
+        }
+
+        .timeline-event h3 {
+            margin: 0;
+            font-size: 1.2em;
+            color: var(--primary-color);
+        }
+
+        .timeline-event p {
+            margin: 5px 0 0;
+            font-size: 1em;
+        }
+
+        footer {
+            background-color: var(--footer-bg-color);
+            color: var(--footer-text-color);
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--footer-text-color);
+            text-decoration: underline;
         }
     </style>
     <script>
@@ -94,37 +172,78 @@
     </script>
 </head>
 <body>
-    <h1>Kamery dálnice D55</h1>
-    <div class="grid">
-        <div class="grid-item">
-            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4297&rnd=KpsVsJt4" alt="Kamera 4297" onclick="showOverlay(this)">
-            <div class="caption">43,2 km směr Břeclav</div>
-        </div>
-        <div class="grid-item">
-            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4298&rnd=Sm35JvIN" alt="Kamera 4298" onclick="showOverlay(this)">
-            <div class="caption">47,1 km směr Olomouc</div>
-        </div>
-        <div class="grid-item">
-            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4299&rnd=Sgqyyp13" alt="Kamera 4299" onclick="showOverlay(this)">
-            <div class="caption">49,8 km směr Břeclav</div>
-        </div>
-        <div class="grid-item">
-            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4300&rnd=pKDUZPy2" alt="Kamera 4300" onclick="showOverlay(this)">
-            <div class="caption">51 km směr Olomouc</div>
-        </div>
-        <div class="grid-item">
-            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4301&rnd=sbPSedIk" alt="Kamera 4301" onclick="showOverlay(this)">
-            <div class="caption">55,1 km směr Olomouc</div>
-        </div>
-        <div class="grid-item">
-            <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4302&rnd=IWB1TS65" alt="Kamera 4302" onclick="showOverlay(this)">
-            <div class="caption">58,9 km směr Břeclav</div>
-        </div>
-    </div>
 
-    <!-- Překryvné zobrazení -->
-    <div class="overlay" onclick="hideOverlay()">
-        <img src="" alt="Zvětšená kamera">
+<header>
+    <h1>Dálnice D55: Kamery na úseku Babice – Bzenec</h1>
+</header>
+
+<div class="description">
+    Tento úsek D55 spojuje obce Babice a Bzenec. Je klíčovým spojem pro tranzitní dopravu mezi Zlínským a Jihomoravským krajem, přináší lepší bezpečnost a odlehčení od místní dopravy.
+</div>
+
+<div class="grid">
+    <div class="grid-item">
+        <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4297" alt="Kamera 4297" onclick="showOverlay(this)">
+        <div class="caption">43,2km</div>
     </div>
+    <div class="grid-item">
+        <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4298" alt="Kamera 4298" onclick="showOverlay(this)">
+        <div class="caption">47,1 km</div>
+    </div>
+    <div class="grid-item">
+        <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4299" alt="Kamera 4299" onclick="showOverlay(this)">
+        <div class="caption">49,8 km</div>
+    </div>
+    <div class="grid-item">
+        <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4300" alt="Kamera 4300" onclick="showOverlay(this)">
+        <div class="caption">51 km</div>
+    </div>
+    <div class="grid-item">
+        <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4301" alt="Kamera 4301" onclick="showOverlay(this)">
+        <div class="caption">55,1 km</div>
+    </div>
+    <div class="grid-item">
+        <img src="https://api.dopravniinfo.cz/CameraImage.ashx?camera=4302" alt="Kamera 4302" onclick="showOverlay(this)">
+        <div class="caption">58,9 km</div>
+    </div>
+</div>
+
+<div class="overlay" onclick="hideOverlay()">
+    <img src="" alt="Zvětšená kamera">
+</div>
+
+<div class="timeline">
+    <h2>Budoucí výstavba</h2>
+    <div class="timeline-event">
+        <h3>5506 Napajedla - Babice</h3>
+        <p>Zahájení stavby: 2026</p>
+        <p>Dokončení: 2029</p>
+    </div>
+    <div class="timeline-event">
+        <h3>5510 Bzenec - Bzenec-Přívoz</h3>
+        <p>Zahájení stavby: 2028</p>
+        <p>Dokončení: 2031</p>
+    </div>
+    <div class="timeline-event">
+        <h3>5511 Bzenec-Přívoz - Rohatec</h3>
+        <p>Zahájení stavby: 2028</p>
+        <p>Dokončení: 2031</p>
+    </div>
+    <div class="timeline-event">
+        <h3>5512 Rohatec - Lužice</h3>
+        <p>Zahájení stavby: 2028</p>
+        <p>Dokončení: 2032</p>
+    </div>
+    <div class="timeline-event">
+        <h3>5513 Lužice Břeclav</h3>
+        <p>Zahájení stavby: 2028</p>
+        <p>Dokončení: 2032</p>
+    </div>
+</div>
+
+<footer>
+    Další informace o dálnici D55 naleznete na <a href="https://www.rsd.cz" target="_blank">rsd.cz</a> a <a href="https://dalniced55.cz/" target="_blank">dalniced55.cz</a>.
+</footer>
+
 </body>
 </html>
